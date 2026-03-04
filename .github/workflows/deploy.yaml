@@ -22,4 +22,5 @@ jobs:
           script: |
             cd /home/ec2-user/node_server_server
             git pull
+            docker-compose down
             docker-compose up -d --build
