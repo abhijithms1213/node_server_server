@@ -19,7 +19,7 @@ app.listen(port, () => {
   console.log("listening on port: http://localhost:3002/");
 });
 
-mongoose.connect(db_connect).then(() => console.log("Connected!"));
+// mongoose.connect(db_connect).then(() => console.log("Connected!"));
 
 app.get("/", (req, res) => {
   res.json({
@@ -27,9 +27,9 @@ app.get("/", (req, res) => {
   });
 });
 
-app.post("/productstest", (req, res) => {
-  console.log(req.body);
-  res.json(req.body);
-  //   res.send("done");
-});
-app.use("/products", productRoute);
+// app.post("/productstest", (req, res) => {
+//   console.log(req.body);
+//   res.json(req.body);
+//   //   res.send("done");
+// });
+// app.use("/products", productRoute);
