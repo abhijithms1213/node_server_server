@@ -7,7 +7,7 @@ require("dotenv").config();
 const USER = process.env.DBUSER;
 const PASS = process.env.DBPASS;
 const db_connect = `mongodb+srv://${USER}:${PASS}@node-app.xzterak.mongodb.net/express-Collection?appName=node-app`;
-const port = process.env.PORT || 3002;
+const port = process.env.PORT || 3001;
 
 // =============================
 
