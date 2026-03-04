@@ -1,0 +1,9 @@
+update:
+http://localhost:3001/product/69a6710fde8544dfd36bd95b
+
+
+{
+  "name": "new new",
+  "quantity": 800,
+  "price": -10
+}
