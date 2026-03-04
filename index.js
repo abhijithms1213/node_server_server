@@ -13,6 +13,7 @@ const port = process.env.PORT || 3001;
 
 // middleware
 app.use(express.json());
+app.use(express.static("public"));
 
 // routes
 app.listen(port, () => {
@@ -21,7 +22,7 @@ app.listen(port, () => {
 
 mongoose.connect(db_connect).then(() => console.log("Connected!"));
 
-app.get("/", (req, res) => {
+app.get("/test", (req, res) => {
   res.json({
     res: "success....\n",
   });

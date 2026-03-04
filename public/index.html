@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Server Test</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+  <h1>🚀 Node Server Running</h1>
+  <p>If you see this page, your deployment works.</p>
+
+  <button onclick="checkAPI()">Test API</button>
+
+  <p id="result"></p>
+</div>
+
+<script>
+async function checkAPI() {
+  const res = await fetch("/api");
+  const data = await res.json();
+  document.getElementById("result").innerText =
+    "API Response: " + JSON.stringify(data);
+}
+</script>
+
+</body>
+</html>
