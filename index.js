@@ -23,7 +23,7 @@ mongoose.connect(db_connect).then(() => console.log("Connected!"));
 
 app.get("/", (req, res) => {
   res.json({
-    res: "success....",
+    res: "success....\n",
   });
 });
 
