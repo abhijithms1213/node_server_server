@@ -3,6 +3,7 @@ const router = express.Router();
 // const Order = require("../models/product.test.model.js");
 const Order = require("../models/parent.products.model.js");
 const ShopOrder = require("../models/shop.products.model.js");
+const Shop = require("../models/shop.model.js");
 
 router.post(
   "/",
@@ -52,6 +53,25 @@ router.post(
 
       for (const category of body.categorizedCartModelList) {
         for (const shop of category.shopsCartList) {
+          console.log("Looking for shop:", shop.shop_unique_id);
+          // increment order count atomically
+          const shopDoc = await Shop.findOneAndUpdate(
+            { shop_unique_id: shop.shop_unique_id },
+            { $inc: { order_count: 1 } },
+            { returnDocument: "after" },
+          ).lean();
+
+          if (!shopDoc) {
+            return res.status(404).json({
+              error: `Shop not found for ${shop.shop_unique_id}`,
+            });
+          }
+
+          // generate bill number
+          const paddedCount = String(shopDoc.order_count).padStart(5, "0");
+
+          const billno = `${shopDoc.shop_unique_id}-${paddedCount}`;
+
           const shopOrder = {
             parentOrderId: parentOrder._id,
             orderCreationId: body.orderCreationId,
@@ -61,6 +81,8 @@ router.post(
             shopImage: shop.shopImage,
 
             userId: body.userId,
+
+            billno: billno,
 
             products: shop.products.map((p) => ({
               productId: p.productcode,
@@ -75,7 +97,6 @@ router.post(
               sgst: p.sgst,
 
               imageUrl: p.imageUrl,
-
               subTotal: p.subTotal,
             })),
 
@@ -87,6 +108,7 @@ router.post(
 
             createdAt: body.createdAt,
           };
+
           ordersToInsert.push(shopOrder);
         }
       }
