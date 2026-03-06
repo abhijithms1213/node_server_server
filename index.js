@@ -2,7 +2,9 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const productRoute = require("./routes/product.route.js");
+const orderRoute = require("./routes/order.route.js");
 require("dotenv").config();
+const OrderSchema = require("./models/product.test.model.js");
 
 const USER = process.env.DBUSER;
 const PASS = process.env.DBPASS;
@@ -34,5 +36,5 @@ app.post("/productstest", (req, res) => {
   //   res.send("done");
 });
 app.use("/products", productRoute);
-
+app.use("/api/orders", orderRoute);
 // check latest v3
