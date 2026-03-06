@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const productRoute = require("./routes/product.route.js");
 const orderRoute = require("./routes/order.route.js");
+const shopRoute = require("./routes/shop.route.js");
 require("dotenv").config();
 
 const USER = process.env.DBUSER;
@@ -36,4 +37,5 @@ app.post("/productstest", (req, res) => {
 });
 app.use("/products", productRoute);
 app.use("/api/orders", orderRoute);
+app.use("/api/shops", shopRoute);
 // check latest v3

@@ -29,7 +29,7 @@ const parentOrderSchema = new mongoose.Schema(
           shopName: String,
           shopImage: String,
           shopCategory: String,
-
+  shop_unique_id: String,
           products: [
             {
               productcode: String,

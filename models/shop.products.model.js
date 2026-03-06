@@ -39,6 +39,7 @@ const shopOrderSchema = new mongoose.Schema(
     shopName: String,
     shopImage: String,
 
+    shop_unique_id: String,
     userId: String,
 
     products: [productSchema],
@@ -51,6 +52,7 @@ const shopOrderSchema = new mongoose.Schema(
       type: String,
       default: "Submitted",
     },
+    billno: { type: String },
 
     createdAt: Number,
   },
