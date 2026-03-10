@@ -127,7 +127,7 @@ router.post(
 );
 router.get("/", async (req, res) => {
   try {
-    const order = await OrderSchema.find({});
+    const order = await Order.find({});
     res.json(order);
   } catch (error) {
     res.status(500).json({ message: error.message });
