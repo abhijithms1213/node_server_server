@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const productRoute = require("./routes/product.route.js");
 const orderRoute = require("./routes/order.route.js");
 const shopRoute = require("./routes/shop.route.js");
+const otpRoute = require("./routes/signin.otp.route.js");
 require("dotenv").config();
 
 const USER = process.env.DBUSER;
@@ -19,7 +20,7 @@ app.use(express.static("public"));
 
 // routes
 app.listen(port, () => {
-  console.log("listening on port: http://localhost:3002/");
+  console.log("listening on port: http://localhost:3001/");
 });
 
 mongoose.connect(db_connect).then(() => console.log("Connected!"));
@@ -38,4 +39,5 @@ app.post("/productstest", (req, res) => {
 app.use("/products", productRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/shops", shopRoute);
+app.use("/api/sign-in-otp", otpRoute);
 // check latest v3
